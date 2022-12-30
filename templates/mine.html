@@ -1,0 +1,37 @@
+{%  extends 'base.html' %}
+{% block content %}
+<style>
+    @import url(//db.onlinewebfonts.com/c/2206d6cc490084998d531e8c1b2cbb4a?family=Druk+Wide+Bold);
+    body {
+    background-color:#97CAEF;
+    }
+    .mainbox{
+        background-color:#97CAEF;
+        font-family:"Druk Wide Bold";
+        font-size:20px;
+        text-align:left;
+    }
+    h1{
+        text-align: left;
+        font-size:25px;
+
+    }
+    .values{
+        font-family:sans-serif;
+        font-size: 25px;
+    }
+</style>
+<body>
+    <div class="mainbox">
+        <h1>PRODUCT ADDED TO BLOCKCHAIN. HERE ARE THE DETAILS :</h1>
+        <div class="values">
+            <p><b>Hash : {{hash}}</b></p>
+            <p><b>Index : {{index}}</b></p>
+        </div>
+        <p><b>A secure and unique QR Code has been obtained and saved on this system.</b></p>
+        
+    </div>
+</body>
+
+    
+{% endblock %}
