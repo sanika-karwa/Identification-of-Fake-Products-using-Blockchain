@@ -1,0 +1,287 @@
+<!-- extend base layout -->
+{% extends "base.html" %}
+
+{% block content %}
+	<br>
+	<h1><center>FAKE PRODUCT IDENTIFICATION</center></h1>
+	<h3><center>BLOCKCHAIN IMPLEMENTATION</center></h3>
+    
+
+	<center>
+	<form action="/submit" id="textform" method="post">
+
+		<label><b>Product Name:</b> </label> <input type="text" name="prodname" placeholder="Product name" align="left">
+		<br>
+		 <label><b>Product ID: </b></label> <input type="text" name="prodid" placeholder="Product ID" align="left" >
+		 <br>
+		 <label><b>Model ID: </b></label> <input type="text" name="modelid" placeholder="Model ID" align="left">
+		 <br>
+		 <label><b>Seller: </b></label> <input type="text" name="vendor" placeholder="Seller" align="left">
+		 <br>
+		 <label><b>Date: </b></label> <input name="dateman" type="text" onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'" placeholder="Date"  align="left">
+		 <!--<input type="date" name="dateman" placeholder="Date" align="left">-->
+		 <br>
+	     <input type="submit" value="Post">
+	</form>
+	<!--<form action="/search" id="textform" method="post">
+	<input type="text" name="search" placeholder="Your search">
+	<input type="submit" value="Post">
+	</form>-->
+	<a href="{{node_address}}/mine" target="_blank" class="button"><span>Request to mine</span></a>
+	<a href="/" class="button"><span>Resync</span></a>
+
+	</center>
+
+	
+
+	
+	<div style="margin: 20px;">
+
+	{% for post in posts %}
+	
+    <div class="post_box">
+	   <div class="post_box-header">
+	      <div style="background: rgb(0, 97, 146) none repeat scroll 0% 0%; box-shadow: rgb(0, 97, 146) 0px 0px 0px 2px;" class="post_box-avatar">{{post.prodname[0]}}</div>
+	      <div class="name-header"><b>{{post.prodname}}</b></div>
+	      <div class="post_box-subtitle"> Posted at <i>{{readable_time(post.timestamp)}}</i></div>
+	   </div>
+	   <div>
+	      <div class="post_box-body">
+			 <p><b>Product ID : {{post.prodid}}</b></p>
+			 <p><b>Model ID : {{post.modelid}}</b></p>
+			 <p><b>Seller : {{post.vendor}}</b></p>
+			 <p><b>Date : {{post.dateman}}</b></p>
+			<hr>
+			 
+		  </div>
+	   </div>
+	</div>
+	{% endfor %}
+
+	<style>
+		@import url(//db.onlinewebfonts.com/c/2206d6cc490084998d531e8c1b2cbb4a?family=Druk+Wide+Bold);
+		body {
+    background-color:#97CAEF;
+  }
+  h1{
+	font-family: "Druk Wide Bold";
+	top:0px;
+	align-items:center;
+  }
+  h3{
+	font-family: "Druk Wide Bold";
+	top:0px;
+	align-items:center;
+	right:30%;
+  }
+  label{
+	  display: inline-block;
+      clear: left;
+      width: 250px;
+      text-align: right;
+	  font-size: 20px;
+	  font family: Verdana;
+	  color:white;
+	  margin: 10px 0;
+	  padding-right:5px;
+	  width: 15%;
+	  color:black;
+  }
+
+input[type=text] {
+  background-color: #72A4D2;
+  color: black;
+  box-sizing: border-box;
+  border: none;
+  font-family: Verdana;
+  font-weight: bold; 
+  font-size: 20px; 
+  width: 20%;
+  height: 5%;
+  margin:6px 8px;
+  padding: 8px 15px;
+  display: inline-block;
+  clear: right;
+  width: 250px;
+  text-align: left;
+  }
+  input[type=date]{
+	background-color: #72A4D2;
+  color: #444444;
+  box-sizing: border-box;
+  border: none;
+  font-family: Verdana;
+  font-weight: bold; 
+  font-size: 15px; 
+  width: 20%;
+  height: 5%;
+  margin:6px 8px;
+  padding: 8px 15px;
+  display: inline-block;
+  clear: right;
+  width: 250px;
+  text-align: left;
+  }
+
+input[type=submit]{
+  display:inline-block;
+  background-color: black;
+  color: white;
+  box-sizing: border-box;
+  border: none;
+  font-family: Verdana;
+  font-weight: bold; 
+  font-size: 20px; 
+  width: 100px;
+  height: 50px;
+  padding: 10px;
+  margin: 6px 0;
+  text-align: center;
+  align-items:center;
+  justify-content:center;
+  overflow:auto;
+  border-radius:4px;
+  transition: all 0.5s;
+  cursor: pointer;
+  padding-bottom:5px;
+}
+
+input[type=submit] span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+input[type=submit] span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+input[type=submit]:hover span {
+  padding-right: 25px;
+}
+
+input[type=submit]:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+.button{
+  display:inline-block;
+  background-color: black;
+  color: white;
+  box-sizing: none;
+  border: none;
+  font-family: Verdana;
+  font-weight: bold; 
+  font-size: 15.5px; 
+  width: 12%;
+  height: 5%;
+  padding: 17px;
+  margin: 6px 0;
+  text-align: center;
+  transition: all 0.5s;
+  cursor:pointer;
+  padding-left:10px;
+  text-decoration:none;
+  overflow:auto;
+  border-radius: 4px;
+}
+.button span{
+	cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+		.post_box {
+		    background: #97CAEF;
+		    padding: 12px 0px 0px 12px;
+		    margin-top: 0px;
+		    margin-bottom: 8px;
+		    border-top: 1px solid #97CAEF;
+		}
+
+		.post_box-header {
+			padding-bottom: 12px;
+			background-color:#97CAEF;
+			text-transform:capitalize;
+			font-size:22px;
+		}
+
+		.post_box-avatar {
+		    width: 40px;
+		    height: 40px;
+		    border-radius: 50%;
+		    display: flex;
+		    justify-content: center;
+		    align-items: center;
+		    color:#72A4D2;
+		    font-size: 25px;
+		    float: left;
+		    margin-right: 16px;
+		    border: 1px solid #fff;
+		    box-shadow: 0px 0px 0px 2px #f00;
+			text-transform: uppercase;
+		}
+
+		.post_box-avatar::after {
+		    content:"";
+		    display:block;
+		}
+
+		.post_box-name {
+		    font-weight: bold;
+		}
+
+		.post_box-subtitle {
+		    color: black;
+		}
+		
+		.post_box-body {
+		    margin-top: 10px;
+		    margin-bottom: 8px;
+			line-height: 0.5;
+			background-color:#97CAEF;
+			font-size:18px;
+
+		}
+
+		.post_box-options {
+		    float: right;
+		}
+		.option-btn {
+		    background: #f8f8f8;
+		    border: none;
+		    color: #2c3e50;
+		    padding: 7px;
+		    cursor: pointer;
+		    font-size: 14px;
+		    margin-left: 2px;
+		    margin-right: 2px;
+		    outline: none;
+		    height: 42px;
+		}
+	</style>
+    </div>
+{% endblock %}
